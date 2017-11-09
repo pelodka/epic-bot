@@ -1,0 +1,17 @@
+{
+  "name": "epic-bot",
+  "version": "1.0.0",
+  "description": "Epicor chat Telegram bot",
+  "main": "bot.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "node-telegram-bot-api": "^0.29.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
+  },
+  "author": "Ilya Babentsov <ilya.babentsov@gmail.com>",
+  "license": "ISC"
+}
