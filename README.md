@@ -1,2 +1,2 @@
 # epic-bot
-Epicor Telegram chat bot
+Epicor Telegram for fun chat bot
