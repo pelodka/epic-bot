@@ -3,7 +3,7 @@ const express = require("express");
 const schedule = require("node-schedule");
 const token = process.env.BOT_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
-const epicChat = process.env.EPIC_CHAT;
+const epicChatId = process.env.EPIC_CHAT;
 const myChatId = process.env.MY_CHAT;
 const voblaPicUrl = "https://i.imgur.com/Uai8cr0.jpg";
 const helloMessage =
@@ -87,4 +87,4 @@ var j = schedule.scheduleJob("0 0 12 * * 1-5", function() {
   sendVoblaToChat(process.env.EPIC_CHAT);
 });
 
-bot.sendMessage(myChatId, helloMessage);
+bot.sendMessage(epicChatId, helloMessage);
