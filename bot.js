@@ -1,5 +1,6 @@
 const TelegramBot = require("node-telegram-bot-api");
 const express = require('express');
+const schedule = require('node-schedule');
 const token = process.env.BOT_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 const epicChat = process.env.EPIC_CHAT;
@@ -14,6 +15,12 @@ const repliesToHitler = [
   "Он был прав. Германия действительно стала жить намного лучше после войны.",
   "Зига."
 ];
+
+function sendVoblaToChat(chatid) {
+  bot.sendPhoto(chatid, voblaPicUrl, {
+    caption: "#vobla\nПриятного аппетита."
+  });
+};
 
 const app = express();
 
@@ -64,13 +71,15 @@ bot.onText(/\/start/, msg => {
 });
 
 bot.onText(/\/vobla/, msg => {
-  bot.sendPhoto(msg.chat.id, voblaPicUrl, {
-    caption: "#vobla\nПриятного аппетита."
-  });
+  sendVoblaToChat(msg.chat.id);
 });
 
 bot.onText(/\/chatid/, msg => {
   bot.sendMessage(msg.chat.id, "Your chat id is:\n" + msg.chat.id);
+});
+
+var j = schedule.scheduleJob('0 0 12 * * 1-5', function(){
+  sendVoblaToChat(process.env.EPIC_CHAT);
 });
 
 bot.sendMessage(myChatId, helloMessage);

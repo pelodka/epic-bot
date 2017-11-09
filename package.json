@@ -5,6 +5,7 @@
   "main": "bot.js",
   "dependencies": {
     "express": "^4.16.2",
+    "node-schedule": "^1.2.5",
     "node-telegram-bot-api": "^0.29.0"
   },
   "devDependencies": {},
