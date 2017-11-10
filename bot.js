@@ -19,7 +19,9 @@ const replyToLiberast = "Чё ты как чмо, чё ты как чёрт, ч�
   + "Слышь я тебе повторяю ещё раз";
 
 const helloMessage =
-  "Вечер в хату, часик в радость, чифир в сладость.\nСписок команд:\n/start\n/vobla\n/chatid";
+  "Вечер в хату, часик в радость, чифир в сладость.\n" + startReply;
+
+const startReply = "Список команд:\n/start\n/vobla\n/chatid\n/time";
 
 const repliesToHitler = [
   "Адольф молодец!",
@@ -90,7 +92,7 @@ bot.on("message", msg => {
       .includes(alien)
   ) {
     bot.sendMessage(msg.chat.id, replyToAlien);
-  }else if (
+  } else if (
     msg.text
       .toString()
       .toLowerCase()
@@ -115,7 +117,7 @@ bot.on("message", msg => {
 });
 
 bot.onText(/\/start/, msg => {
-  bot.sendMessage(msg.chat.id, "Список команд:\n/start\n/vobla\n/chatid");
+  bot.sendMessage(msg.chat.id, startReply);
 });
 
 bot.onText(/\/vobla/, msg => {
