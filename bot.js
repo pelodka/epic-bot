@@ -7,6 +7,11 @@ const epicChatId = process.env.EPIC_CHAT;
 const myChatId = process.env.MY_CHAT;
 const voblaPicUrl = "https://i.imgur.com/Uai8cr0.jpg";
 
+const replyToTrash = "Мы не сделали скандала —\n"
+  + "Нам вождя недоставало:\n"
+  + "Настоящих буйных мало —\n"
+  + "Вот и нету вожаков.";
+
 const replyToLiberast = "Чё ты как чмо, чё ты как чёрт, чё ты не патриот?\n"
   + "Ты чё волчёнок, ты дохуя умный? Слышишь ты чё нах?\n"
   + "Ты же крещёный, ну ты ж не копчёный, ну вот и всё нах\n"
@@ -62,6 +67,7 @@ bot.on("message", msg => {
   let hitler = "гитлер";
   let gnoy = "гнойн";
   let alien = "инопланет";
+  let trash = "срач";
   if (
     msg.text
       .toString()
@@ -79,6 +85,13 @@ bot.on("message", msg => {
       .includes(alien)
   ) {
     bot.sendMessage(msg.chat.id, replyToAlien);
+  }else if (
+    msg.text
+      .toString()
+      .toLowerCase()
+      .includes(trash)
+  ) {
+    bot.sendMessage(msg.chat.id, replyToTrash);
   } else if (
     msg.text
       .toString()
