@@ -6,15 +6,32 @@ const bot = new TelegramBot(token, { polling: true });
 const epicChatId = process.env.EPIC_CHAT;
 const myChatId = process.env.MY_CHAT;
 const voblaPicUrl = "https://i.imgur.com/Uai8cr0.jpg";
+
+const replyToLiberast = "Чё ты как чмо, чё ты как чёрт, чё ты не патриот?\n"
+  + "Ты чё волчёнок, ты дохуя умный? Слышишь ты чё нах?\n"
+  + "Ты же крещёный, ну ты ж не копчёный, ну вот и всё нах\n"
+  + "Хочешь быть порабощённым?\n"
+  + "Слышь я тебе повторяю ещё раз";
+
 const helloMessage =
   "Вечер в хату, часик в радость, чифир в сладость.\nСписок команд:\n/start\n/vobla\n/chatid";
+
 const repliesToHitler = [
   "Адольф молодец!",
   "Так держать, пацаны. Правильные вещи обсуждаете.",
   "Фюрер жив в наших сердцах!",
   "Он был прав. Германия действительно стала жить намного лучше после войны.",
-  "Зига."
+  "Зига!"
 ];
+
+const replyToAlien = "Уважаемый редактор!\n"
+  + "Может, лучше — про реактор?\n"
+  + "Там, про любимый лунный трактор?\n"
+  + "Ведь нельзя же! — год подряд\n"
+  + "То тарелками пугают —\n"
+  + "Дескать, подлые, летают,\n"
+  + "То у вас собаки лают,\n"
+  + "То руины говорят!";
 
 function sendVoblaToChat(chatid) {
   bot.sendPhoto(chatid, voblaPicUrl, {
@@ -24,11 +41,11 @@ function sendVoblaToChat(chatid) {
 
 const app = express();
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.json({ version: packageInfo.version });
 });
 
-var server = app.listen(process.env.PORT, function() {
+var server = app.listen(process.env.PORT, function () {
   var host = server.address().address;
   var port = server.address().port;
 
@@ -41,9 +58,10 @@ function getRandomInt(max) {
 }
 
 bot.on("message", msg => {
-  let liberast = "либераст";
+  let liberast = "либера";
   let hitler = "гитлер";
   let gnoy = "гнойн";
+  let alien = "инопланет";
   if (
     msg.text
       .toString()
@@ -58,6 +76,13 @@ bot.on("message", msg => {
     msg.text
       .toString()
       .toLowerCase()
+      .includes(alien)
+  ) {
+    bot.sendMessage(msg.chat.id, replyToAlien);
+  } else if (
+    msg.text
+      .toString()
+      .toLowerCase()
       .includes(gnoy)
   ) {
     bot.sendMessage(msg.chat.id, "ОКСИ КОРОЛЬ РУССКАВА РЭПА СУКА!");
@@ -67,7 +92,7 @@ bot.on("message", msg => {
       .toLowerCase()
       .includes(liberast)
   ) {
-    bot.sendMessage(msg.chat.id, "Сам такой!");
+    bot.sendMessage(msg.chat.id, replyToLiberast);
   }
 });
 
@@ -83,7 +108,7 @@ bot.onText(/\/chatid/, msg => {
   bot.sendMessage(msg.chat.id, "Your chat id is:\n" + msg.chat.id);
 });
 
-var j = schedule.scheduleJob("0 0 12 * * 1-5", function() {
+var j = schedule.scheduleJob("0 0 12 * * 1-5", function () {
   sendVoblaToChat(process.env.EPIC_CHAT);
 });
 
