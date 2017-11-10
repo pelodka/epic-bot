@@ -44,6 +44,11 @@ function sendVoblaToChat(chatid) {
   });
 }
 
+function getTime() {
+  let date = new Date();
+  return date.getHours() + ':' + date.getMinutes();
+}
+
 const app = express();
 
 app.get("/", function (req, res) {
@@ -119,6 +124,10 @@ bot.onText(/\/vobla/, msg => {
 
 bot.onText(/\/chatid/, msg => {
   bot.sendMessage(msg.chat.id, "Your chat id is:\n" + msg.chat.id);
+});
+
+bot.onText(/\/time/, msg => {
+  bot.sendMessage(msg.chat.id, getTime());
 });
 
 var j = schedule.scheduleJob("0 0 12 * * 1-5", function () {
