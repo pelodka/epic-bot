@@ -111,7 +111,9 @@ bot.on("message", msg => {
       .toLowerCase()
       .includes(trash)
   ) {
-    bot.sendMessage(msg.chat.id, replyToTrash);
+    bot.sendMessage(msg.chat.id, 
+      replyToTrash[getRandomInt(replyToTrash.length)]
+    );
   } else if (
     msg.text
       .toString()
@@ -125,7 +127,9 @@ bot.on("message", msg => {
       .toLowerCase()
       .includes(liberast)
   ) {
-    bot.sendMessage(msg.chat.id, replyToLiberast);
+    bot.sendMessage(msg.chat.id, 
+    replyToLiberast[getRandomInt(replyToLiberast.length)]
+    );
   }
 });
 
